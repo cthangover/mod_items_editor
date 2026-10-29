@@ -1,13 +1,11 @@
 using Cthangover.Core.UI.Tool;
-using Cthangover.Mods.Interface.Tool;
 using Godot;
 
 namespace Cthangover.Tools.ItemsEditor
 {
     /// <summary>
-    /// Registers the item editor as a tool: it appears in the main menu's tool
-    /// block and (with <see cref="ItemEditorToolBoxButton"/>)
-    /// the in-game toolbar.
+    /// Registers the item editor window opened from the in-game toolbar
+    /// through <see cref="ItemEditorToolBoxButton"/>.
     /// </summary>
     public class ItemEditorToolProvider : IToolProvider
     {
@@ -19,8 +17,5 @@ namespace Cthangover.Tools.ItemsEditor
 
         /// <summary>Creates the window.</summary>
         public Window CreateWindow() => new ItemEditorWindow();
-
-        /// <summary>Adds the launcher button to the main menu's tool block.</summary>
-        public void AddMenuButton(Container container) => ToolMenuButton.Attach(container, this);
     }
 }
