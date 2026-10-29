@@ -1,9 +1,9 @@
 {
   "id": "items_editor",
-  "name": "Item Editor",
+  "name": "Items Editor",
   "version": "1.0.0",
   "author": "ct",
-  "description": "Editor of the game's items (items_base, \"Kind\": \"item\") in the style of the other editor windows: the items of a writable mod in a searchable list with their pictures, a form with the name and the description in every language of the mod, price, picture picked from the items folders, item types and the use action; fields of other mods stay editable as JSON. New items, copies, deletion, undo, and a save the running game sees at once. Opens from the main menu tools and the in-game toolbar.",
+  "description": "Edits a mod's items while the game runs: names and descriptions in every language, price, picture, types and the use action. The game shows a save at once.",
   "category": "tools, editor",
   "sources": [
     "src/**/*.cs"
