@@ -10,9 +10,9 @@ RPG Plus 的背包里有村里商店卖的药水：
 
 ![背包中选中药剂：Targeted，价格 10。](assets/bag-before.jpg)
 
-在编辑器里：顶部选择模组 `rpg_demo_game`，在列表中选**药剂**，输入新的英文名称，按**保存**（Ctrl+S）：
+在编辑器里：顶部选择模组 `rpg_plus_game`，在列表中选**药剂**，输入新的英文名称，按**保存**（Ctrl+S）：
 
-![rpg_demo_game 上的「物品」窗口：列表中有 柴火、石头、森林蘑菇 和 Dawn elixir；rpg_demo/elixir 的表单，名称键为 rpg_demo/item/elixir/name，文本 (en) Dawn elixir，其余六种语言未变，描述有七种语言，价格 10，图标 rpg_demo/healing_elixir 及其图片，类型 TargetUsed，动作 action/heal。状态行：「已保存：模组 rpg_demo_game 中 0 个文件、1 条文本；游戏已重新读取数据」。](assets/editor-saved.jpg)
+![rpg_plus_game 上的「物品」窗口：列表中有 柴火、石头、森林蘑菇 和 Dawn elixir；rpg_demo/elixir 的表单，名称键为 rpg_demo/item/elixir/name，文本 (en) Dawn elixir，其余六种语言未变，描述有七种语言，价格 10，图标 rpg_demo/healing_elixir 及其图片，类型 TargetUsed，动作 action/heal。状态行：「已保存：模组 rpg_plus_game 中 0 个文件、1 条文本；游戏已重新读取数据」。](assets/editor-saved.jpg)
 
 只有模组 `locale/en.properties` 的英文一行变了；物品文件没有动。紧接着背包里的同一瓶药水：
 
@@ -31,9 +31,19 @@ RPG Plus 的背包里有村里商店卖的药水：
 
 工具栏：**新建**（Ctrl+N）添加 `<mod>/new_item`——一个价值一枚金币、没有动作的资源；**复制**（Ctrl+D）、**删除**、**撤销**/**重做**（Ctrl+Z / Ctrl+Y）。保存只写文字有变化的文件；新物品进入 `items/<mod>.json`。
 
-## 哪些物品可以编辑
+## 其他模组的物品
 
-列表显示一个模组的物品——即它自己文件里的那些。模组列表里只有以文件夹安装的模组。想不改那个模组就改它的物品，可以在你的模组里带上相同的 id 并声明对属主的依赖；Items Editor 本身只编辑所选模组的文件。
+列表显示所选模组的物品。勾选 **Entries of other mods** 可加入其依赖模组的物品，并标记 `↗ 所有者`。编辑这类物品不会改动所有者的文件：修改以补丁形式保存在你的模组中（`patches/item/<你的模组>.json`），只包含你改动的值。**Reset to inherited** 删除补丁，**Delete** 写入 `$delete`，**Copy** 生成一个新 id 的自有物品。只能写入以文件夹形式安装的模组。
+
+每个字段都会显示其值的来源：标记指出该值来自你的补丁、其他模组的补丁，还是通过 `Extends` 继承；**↺** 按钮删除你对该字段的值，使继承的值重新生效。
+
+## 放到地图上
+
+**Place on map** 会在该物品所在模组的第一个地图文件上打开 RPG 地图编辑器，并已选中该物品的拾取对象，准备放置。拾取对象是类别为 `pickup`、且 id 以物品名结尾的对象：对于 `rpg_plus/amber`，即 `rpg_plus/pickup/amber`。若不存在，则选择游戏中的第一个拾取对象，因此请在地图编辑器的调色板中确认选择。
+
+![在 rpg_plus_game 的第一张地图 rpg_desert 上由 Place on map 打开的 RPG 地图编辑器：Sprites 标签中选中了 amber 拾取物，Place 工具已启用。](assets/place-on-map.jpg)
+
+地图编辑器不写入交互。放置的拾取物只有在该放置对象带有动作 `item.add id=<物品> count=1` 时才会给出物品；这一行需要手动写入放置对象的文件。
 
 ## 出问题了怎么办
 

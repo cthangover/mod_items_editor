@@ -19,6 +19,12 @@
       "activate": [
         "--itest=items_editor_edit"
       ]
+    },
+    {
+      "id": "foreign_patch",
+      "activate": [
+        "--itest=editor_foreign_patch"
+      ]
     }
   ]
 }

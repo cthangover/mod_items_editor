@@ -10,9 +10,9 @@ RPG Plus のインベントリには村の店のエリクサーがあります:
 
 ![エリクサーを選んだインベントリ: Targeted、価格 10。](assets/bag-before.jpg)
 
-エディターでは: 上で MOD `rpg_demo_game` を選び、一覧から**エリクサー**を選び、新しい英語名を入力して**保存**（Ctrl+S）を押します:
+エディターでは: 上で MOD `rpg_plus_game` を選び、一覧から**エリクサー**を選び、新しい英語名を入力して**保存**（Ctrl+S）を押します:
 
-![rpg_demo_game の「アイテム」ウィンドウ: 一覧は柴、石、森のキノコ、Dawn elixir。rpg_demo/elixir のフォーム、名前キー rpg_demo/item/elixir/name、テキスト (en) Dawn elixir、ほかの六言語は変更なし、説明は七言語、価格 10、アイコン rpg_demo/healing_elixir とその画像、種類 TargetUsed、アクション action/heal。ステータス行:「保存しました: MOD rpg_demo_game のファイル 0、テキスト 1。ゲームはデータを読み直しました」。](assets/editor-saved.jpg)
+![rpg_plus_game の「アイテム」ウィンドウ: 一覧は柴、石、森のキノコ、Dawn elixir。rpg_demo/elixir のフォーム、名前キー rpg_demo/item/elixir/name、テキスト (en) Dawn elixir、ほかの六言語は変更なし、説明は七言語、価格 10、アイコン rpg_demo/healing_elixir とその画像、種類 TargetUsed、アクション action/heal。ステータス行:「保存しました: MOD rpg_plus_game のファイル 0、テキスト 1。ゲームはデータを読み直しました」。](assets/editor-saved.jpg)
 
 変わったのは MOD の `locale/en.properties` の英語の行だけです。アイテムのファイルには触れていません。直後のインベントリの同じエリクサー:
 
@@ -31,9 +31,19 @@ RPG Plus のインベントリには村の店のエリクサーがあります:
 
 ツールバー: **新規**（Ctrl+N）は `<mod>/new_item`——アクションなし、価値 1 コインのリソース——を追加します。**コピー**（Ctrl+D）、**削除**、**元に戻す**/**やり直す**（Ctrl+Z / Ctrl+Y）。保存はテキストが変わったファイルだけを書き込み、新しいアイテムは `items/<mod>.json` に入ります。
 
-## どのアイテムを編集できるか
+## 他のモッドのアイテム
 
-一覧に現れるのは一つの MOD のアイテム——その MOD 自身のファイルにあるものです。MOD の一覧には、フォルダーとしてインストールされた MOD だけが並びます。その MOD を編集せずに別 MOD のアイテムを変えるには、自分の MOD で同じ id を配り、所有者への依存関係を宣言します。Items Editor 自体は選んだ MOD のファイルだけを編集します。
+一覧には選んだモッドのアイテムが並びます。**Entries of other mods** をオンにすると依存先のアイテムも加わり、`↗ 所有者` の印が付きます。そのアイテムを編集しても所有者のファイルには触れません。変更は自分のモッドのパッチ（`patches/item/<自分のモッド>.json`）に、変えた値だけで保存されます。**Reset to inherited** はパッチを外し、**Delete** は `$delete` を書き、**Copy** は新しい id の自分のアイテムを作ります。書き込めるのはフォルダとしてインストールされたモッドだけです。
+
+フィールドごとに値の出どころが表示されます。自分のパッチ、他のモッドのパッチ、`Extends` による継承を示す印があり、**↺** でそのフィールドの自分の値を外すと、継承された値に戻ります。
+
+## マップに置く
+
+**Place on map** は、アイテムのモッドの最初のマップファイルを RPG マップエディタで開き、そのアイテムの拾得オブジェクトを置く準備をした状態にします。拾得オブジェクトは、カテゴリが `pickup` で、id がアイテム名で終わるものです。`rpg_plus/amber` なら `rpg_plus/pickup/amber` です。該当がなければ、ゲーム中で最初の拾得オブジェクトが選ばれるので、マップエディタのパレットで選択を確認してください。
+
+![rpg_plus_game の最初のマップ rpg_desert で Place on map から開いた RPG マップエディタ。Sprites タブで amber の拾得物が選ばれ、Place ツールが有効になっている。](assets/place-on-map.jpg)
+
+マップエディタは相互作用を書きません。置いた拾得物は、その配置に `item.add id=<アイテム> count=1` のアクションがあるときだけアイテムを渡します。この行は配置のファイルに手で書いてください。
 
 ## うまくいかないとき
 
