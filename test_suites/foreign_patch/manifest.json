@@ -1,0 +1,10 @@
+{
+  "name": "Editor Foreign Patch Test",
+  "description": "GUI test of editing another mod's entity in the item editor (rpg_plus): rpg_plus_game is opened, the classic_rpg_pack dagger is listed as a foreign entry, its price typed in the form becomes rpg_plus_game's patch patches/item/rpg_plus_game.json with only that field; the game sees the new price at once, the owner's file stays byte for byte; Delete writes $delete and the game drops the item; Reset to inherited removes the entry and the empty patch file. The patch file and the locale files are restored afterwards. Activated by --itest=editor_foreign_patch with --game=rpg_plus --new.",
+  "sources": [
+    "src/*.cs"
+  ],
+  "depends": [
+    "rpg_plus_game>=1"
+  ]
+}

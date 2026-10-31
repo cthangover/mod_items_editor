@@ -10,9 +10,9 @@ RPG Plus의 인벤토리에는 마을 상점의 엘릭서가 있습니다:
 
 ![엘릭서를 고른 인벤토리: Targeted, 가격 10.](assets/bag-before.jpg)
 
-에디터에서는: 위에서 모드 `rpg_demo_game`을 고르고, 목록에서 **엘릭서**를 고르고, 새 영어 이름을 입력한 뒤 **저장**(Ctrl+S)을 누릅니다:
+에디터에서는: 위에서 모드 `rpg_plus_game`을 고르고, 목록에서 **엘릭서**를 고르고, 새 영어 이름을 입력한 뒤 **저장**(Ctrl+S)을 누릅니다:
 
-![rpg_demo_game의 "아이템" 창: 목록에는 땔감, 돌, 숲 버섯, Dawn elixir. rpg_demo/elixir의 양식, 이름 키 rpg_demo/item/elixir/name, 텍스트 (en) Dawn elixir, 나머지 여섯 언어는 그대로, 일곱 언어의 설명, 가격 10, 아이콘 rpg_demo/healing_elixir와 그 그림, 유형 TargetUsed, 동작 action/heal. 상태 줄: "저장함: 모드 rpg_demo_game의 파일 0개, 텍스트 1개. 게임이 데이터를 다시 읽었습니다".](assets/editor-saved.jpg)
+![rpg_plus_game의 "아이템" 창: 목록에는 땔감, 돌, 숲 버섯, Dawn elixir. rpg_demo/elixir의 양식, 이름 키 rpg_demo/item/elixir/name, 텍스트 (en) Dawn elixir, 나머지 여섯 언어는 그대로, 일곱 언어의 설명, 가격 10, 아이콘 rpg_demo/healing_elixir와 그 그림, 유형 TargetUsed, 동작 action/heal. 상태 줄: "저장함: 모드 rpg_plus_game의 파일 0개, 텍스트 1개. 게임이 데이터를 다시 읽었습니다".](assets/editor-saved.jpg)
 
 바뀐 것은 모드 `locale/en.properties`의 영어 한 줄뿐입니다. 아이템 파일은 그대로입니다. 바로 뒤의 인벤토리 속 같은 엘릭서:
 
@@ -31,9 +31,19 @@ RPG Plus의 인벤토리에는 마을 상점의 엘릭서가 있습니다:
 
 도구 모음: **새로 만들기**(Ctrl+N)는 `<mod>/new_item` — 동작 없는, 가치 1코인짜리 자원 — 을 더합니다. **복사**(Ctrl+D), **삭제**, **되돌리기**/**다시 실행**(Ctrl+Z / Ctrl+Y). 저장은 텍스트가 바뀐 파일만 기록하고, 새 아이템은 `items/<mod>.json`으로 갑니다.
 
-## 어떤 아이템을 편집할 수 있는가
+## 다른 모드의 아이템
 
-목록에는 한 모드의 아이템 — 그 모드 자신의 파일에 있는 것들 — 이 보입니다. 모드 목록에는 폴더로 설치된 모드만 있습니다. 그 모드를 고치지 않고 남의 아이템을 바꾸려면, 자기 모드에 같은 id를 실고 소유자에 대한 의존성을 선언하세요. Items Editor 자체는 선택한 모드의 파일만 편집합니다.
+목록에는 고른 모드의 아이템이 나옵니다. **Entries of other mods**를 켜면 의존하는 모드의 아이템도 `↗ 소유자` 표시와 함께 추가됩니다. 그런 아이템을 편집해도 소유자의 파일은 건드리지 않습니다. 변경은 여러분의 모드에 `patches/item/<여러분의 모드>.json` 패치로, 바꾼 값만 담겨 저장됩니다. **Reset to inherited**는 패치를 지우고, **Delete**는 `$delete`를 기록하며, **Copy**는 새 id의 여러분 아이템을 만듭니다. 폴더로 설치된 모드에만 기록할 수 있습니다.
+
+각 항목은 값의 출처를 보여 줍니다. 표시는 여러분의 패치, 다른 모드의 패치, `Extends`로 물려받은 값을 알려 주며, **↺** 버튼은 그 항목의 여러분 값을 지워 물려받은 값이 돌아오게 합니다.
+
+## 맵에 놓기
+
+**Place on map**은 아이템이 속한 모드의 첫 번째 맵 파일을 RPG 맵 편집기로 열고, 그 아이템의 줍기 오브젝트를 놓을 수 있도록 골라 둡니다. 줍기 오브젝트는 카테고리가 `pickup`이고 id가 아이템 이름으로 끝나는 것입니다. `rpg_plus/amber`라면 `rpg_plus/pickup/amber`입니다. 없으면 게임의 첫 번째 줍기 오브젝트가 고르므로 맵 편집기 팔레트에서 선택을 확인하세요.
+
+![rpg_plus_game의 첫 번째 맵 rpg_desert에서 Place on map으로 연 RPG 맵 편집기. Sprites 탭에서 amber 줍기 오브젝트가 선택되어 있고 Place 도구가 켜져 있습니다.](assets/place-on-map.jpg)
+
+맵 편집기는 상호작용을 기록하지 않습니다. 놓인 줍기 아이템은 그 배치에 `item.add id=<아이템> count=1` 동작이 있을 때만 아이템을 줍니다. 이 줄은 배치 파일에 직접 써야 합니다.
 
 ## 문제가 생겼을 때
 

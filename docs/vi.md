@@ -10,9 +10,9 @@ Trong RPG Plus, túi đồ có thuốc tiên của cửa hàng trong làng:
 
 ![Túi đồ với Thuốc tiên được chọn: Targeted, giá 10.](assets/bag-before.jpg)
 
-Trong trình sửa: chọn mod `rpg_demo_game` ở trên, chọn **Thuốc tiên** trong danh sách, gõ một tên tiếng Anh mới rồi nhấn **Lưu** (Ctrl+S):
+Trong trình sửa: chọn mod `rpg_plus_game` ở trên, chọn **Thuốc tiên** trong danh sách, gõ một tên tiếng Anh mới rồi nhấn **Lưu** (Ctrl+S):
 
-![Cửa sổ Vật phẩm trên rpg_demo_game: danh sách Củi khô, Đá, Nấm rừng và Dawn elixir; biểu mẫu của rpg_demo/elixir với khóa tên rpg_demo/item/elixir/name, văn bản (en) Dawn elixir và sáu ngôn ngữ còn lại giữ nguyên, mô tả bằng bảy ngôn ngữ, Giá 10, Biểu tượng rpg_demo/healing_elixir cùng hình của nó, Kiểu TargetUsed, Hành động action/heal. Dòng trạng thái: "Đã lưu: 0 tệp, 1 văn bản trong mod rpg_demo_game; game đã đọc lại dữ liệu".](assets/editor-saved.jpg)
+![Cửa sổ Vật phẩm trên rpg_plus_game: danh sách Củi khô, Đá, Nấm rừng và Dawn elixir; biểu mẫu của rpg_demo/elixir với khóa tên rpg_demo/item/elixir/name, văn bản (en) Dawn elixir và sáu ngôn ngữ còn lại giữ nguyên, mô tả bằng bảy ngôn ngữ, Giá 10, Biểu tượng rpg_demo/healing_elixir cùng hình của nó, Kiểu TargetUsed, Hành động action/heal. Dòng trạng thái: "Đã lưu: 0 tệp, 1 văn bản trong mod rpg_plus_game; game đã đọc lại dữ liệu".](assets/editor-saved.jpg)
 
 Chỉ dòng tiếng Anh trong `locale/en.properties` của mod thay đổi; tệp vật phẩm không bị đụng tới. Cùng chai thuốc tiên trong túi đồ ngay sau đó:
 
@@ -31,9 +31,19 @@ Chỉ dòng tiếng Anh trong `locale/en.properties` của mod thay đổi; tệ
 
 Thanh công cụ: **Mới** (Ctrl+N) thêm `<mod>/new_item` — một tài nguyên giá một đồng xu, không có hành động; **Sao chép** (Ctrl+D), **Xóa**, **Hoàn tác**/**Làm lại** (Ctrl+Z / Ctrl+Y). Lưu chỉ ghi những tệp có văn bản thay đổi; vật phẩm mới vào `items/<mod>.json`.
 
-## Những vật phẩm nào được sửa
+## Vật phẩm của mod khác
 
-Danh sách hiện các vật phẩm của một mod — những vật phẩm trong tệp của chính mod đó. Danh sách mod chỉ có các mod cài dưới dạng thư mục. Muốn đổi vật phẩm của mod khác mà không sửa mod đó, hãy mang cùng id trong mod của bạn và khai báo phụ thuộc vào chủ sở hữu; chính Items Editor chỉ sửa tệp của mod được chọn.
+Danh sách hiển thị vật phẩm của mod đã chọn. Đánh dấu **Entries of other mods** để thêm vật phẩm của các mod phụ thuộc, có ghi `↗ chủ sở hữu`. Sửa vật phẩm như vậy không đụng đến tệp của chủ sở hữu: thay đổi được lưu thành bản vá trong mod của bạn (`patches/item/<mod của bạn>.json`), chỉ chứa các giá trị đã đổi. **Reset to inherited** xóa bản vá, **Delete** ghi `$delete`, **Copy** tạo vật phẩm riêng với id mới. Chỉ ghi được vào các mod được cài đặt dưới dạng thư mục.
+
+Mỗi trường cho biết giá trị của nó đến từ đâu: huy hiệu đánh dấu giá trị là bản vá của bạn, bản vá của mod khác, hay giá trị kế thừa qua `Extends`; nút **↺** xóa giá trị của bạn ở trường đó và giá trị kế thừa trở lại.
+
+## Đặt lên bản đồ
+
+**Place on map** mở Trình chỉnh sửa bản đồ RPG trên tệp bản đồ đầu tiên của mod chứa vật phẩm, với vật thể nhặt của vật phẩm đã được chọn sẵn để đặt. Vật thể nhặt là vật thể thuộc loại `pickup` có id kết thúc bằng tên vật phẩm: với `rpg_plus/amber` là `rpg_plus/pickup/amber`. Nếu không có, vật thể nhặt đầu tiên của trò chơi được chọn, nên hãy kiểm tra lựa chọn trong bảng của trình sửa bản đồ.
+
+![Trình chỉnh sửa bản đồ RPG mở bằng Place on map trên bản đồ đầu tiên rpg_desert của rpg_plus_game: tab Sprites đã chọn vật thể nhặt amber, công cụ Place đang bật.](assets/place-on-map.jpg)
+
+Trình sửa bản đồ không ghi tương tác. Vật thể nhặt đã đặt chỉ trao vật phẩm khi vị trí của nó có hành động `item.add id=<vật phẩm> count=1`; dòng này phải tự viết trong tệp của vị trí.
 
 ## Khi có trục trặc
 
