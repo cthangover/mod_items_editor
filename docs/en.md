@@ -26,7 +26,8 @@ Only the English line of the mod's `locale/en.properties` changed; the item file
 - **Icon** — a picture of the items group; **…** opens a grid to pick one.
 - **Types** — Quest, Used, TargetUsed, Food, Resource, Recipe, CantDrop; several can be on.
 - **Action** — what using the item does: `null` or one of the item actions the loaded mods register (`action/heal`, `action/equip`…).
-- **Fields of other mods** — fields that other mods describe in their schemas for items (for example Equipment's equip type, traits and allowed classes) appear in their own section with the same kind of editors.
+- **Fields of other mods** — fields that other mods describe in their schemas for items (for example Equipment's equip type, traits and allowed classes) appear in their own section with the same kind of editors. The **equip type** is a picker: it offers the types the equipment slots accept, so nothing is typed by hand.
+- **Id** of a saved item is read-only here; **Rename…** under it changes the id (see below).
 - **Other fields** — everything else in the item's JSON, shown and edited as JSON; it is kept as it is.
 
 The toolbar: **New** (Ctrl+N) adds `<mod>/new_item` — a resource worth one coin with no action; **Copy** (Ctrl+D), **Delete**, **Undo**/**Redo** (Ctrl+Z / Ctrl+Y). Save writes only the files whose text changed; a new item goes to `items/<mod>.json`.
@@ -36,6 +37,15 @@ The toolbar: **New** (Ctrl+N) adds `<mod>/new_item` — a resource worth one coi
 The list shows the items of the chosen mod. Tick **Entries of other mods** to add the items of its dependencies; they are marked `↗ owner`. Editing such an item does not touch the owner's file: the change is saved as a patch in your mod (`patches/item/<your mod>.json`) that holds only the values you changed. **Reset to inherited** removes that patch, **Delete** writes a `$delete` entry, and **Copy** makes an own item under a new id. Only mods installed as folders can be written to.
 
 Each field shows where its value comes from. A badge tells you when the value is your own patch, another mod's patch, or inherited through `Extends`; the **↺** button removes your own value of the field, and the inherited one comes back.
+
+## Renaming an id
+
+**Rename…** appears under the Id of a saved item. It asks for the new id, and **Show changes** lists the files that will change before anything is written:
+
+- the item's own file and every file of the mod that names the item (recipes, shops, placements, scenarios, character loot) are rewritten with the new id;
+- the files of other mods that name the item are only listed: they are not changed, and after the rename those mods no longer find it.
+
+**Rename** saves your pending edits first, then writes the listed files; the game knows the new id at once. **Undo rename** in the toolbar puts every changed file back exactly as it was. An id has letters, digits, `_`, `-` and `/` between its parts, and must be free in every mod. A reference the schemas do not describe (a value a script builds at run time, or a text in code) is not found: check such places by hand.
 
 ## Place on map
 
