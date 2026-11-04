@@ -14,6 +14,8 @@ Trong trình sửa: chọn mod `rpg_plus_game` ở trên, chọn **Thuốc tiên
 
 ![Cửa sổ Vật phẩm trên rpg_plus_game: danh sách Củi khô, Đá, Nấm rừng và Dawn elixir; biểu mẫu của rpg_demo/elixir với khóa tên rpg_demo/item/elixir/name, văn bản (en) Dawn elixir và sáu ngôn ngữ còn lại giữ nguyên, mô tả bằng bảy ngôn ngữ, Giá 10, Biểu tượng rpg_demo/healing_elixir cùng hình của nó, Kiểu TargetUsed, Hành động action/heal. Dòng trạng thái: "Đã lưu: 0 tệp, 1 văn bản trong mod rpg_plus_game; game đã đọc lại dữ liệu".](assets/editor-saved.jpg)
 
+Hình trình sửa được chụp trước đây. Khóa `rpg_demo/` hoặc bảng `rpg_tileset` trong hình là của bản cũ; dùng khóa `rpg_plus/` và mô hình `rpg_object` hiện tại trong bài.
+
 Chỉ dòng tiếng Anh trong `locale/en.properties` của mod thay đổi; tệp vật phẩm không bị đụng tới. Cùng chai thuốc tiên trong túi đồ ngay sau đó:
 
 ![Túi đồ giờ hiện vật phẩm là Dawn elixir, vẫn Targeted, giá 10.](assets/bag-after.jpg)
@@ -43,7 +45,7 @@ Mỗi trường cho biết giá trị của nó đến từ đâu: huy hiệu đ
 
 ![Trình chỉnh sửa bản đồ RPG mở bằng Place on map trên bản đồ đầu tiên rpg_desert của rpg_plus_game: tab Sprites đã chọn vật thể nhặt amber, công cụ Place đang bật.](assets/place-on-map.jpg)
 
-Trình sửa bản đồ không ghi tương tác. Vật thể nhặt đã đặt chỉ trao vật phẩm khi vị trí của nó có hành động `item.add id=<vật phẩm> count=1`; dòng này phải tự viết trong tệp của vị trí.
+Trình sửa bản đồ không tự thêm tương tác. Chọn vị trí, **Tương tác → Hành động → Cho vật phẩm**, chọn vật và số lượng rồi lưu. Có thể dùng `action item.add id=<item> count=1` trong lệnh sự kiện. Muốn nhặt một lần, thêm cờ lưu và trạng thái hoặc điều kiện; riêng bộ chọn cho vật phẩm sẽ lặp thưởng mỗi lần dùng.
 
 ## Khi có trục trặc
 

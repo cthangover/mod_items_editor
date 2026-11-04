@@ -14,6 +14,8 @@ RPG Plus のインベントリには村の店のエリクサーがあります:
 
 ![rpg_plus_game の「アイテム」ウィンドウ: 一覧は柴、石、森のキノコ、Dawn elixir。rpg_demo/elixir のフォーム、名前キー rpg_demo/item/elixir/name、テキスト (en) Dawn elixir、ほかの六言語は変更なし、説明は七言語、価格 10、アイコン rpg_demo/healing_elixir とその画像、種類 TargetUsed、アクション action/heal。ステータス行:「保存しました: MOD rpg_plus_game のファイル 0、テキスト 1。ゲームはデータを読み直しました」。](assets/editor-saved.jpg)
 
+エディタの図は以前の撮影です。表示される `rpg_demo/` キーや `rpg_tileset` パレットは旧版のもので、本文の現行 `rpg_plus/` キーと `rpg_object` モデルを使ってください。
+
 変わったのは MOD の `locale/en.properties` の英語の行だけです。アイテムのファイルには触れていません。直後のインベントリの同じエリクサー:
 
 ![インベントリはこのアイテムを Dawn elixir と表示します。変わらず Targeted、価格 10。](assets/bag-after.jpg)
@@ -43,7 +45,7 @@ RPG Plus のインベントリには村の店のエリクサーがあります:
 
 ![rpg_plus_game の最初のマップ rpg_desert で Place on map から開いた RPG マップエディタ。Sprites タブで amber の拾得物が選ばれ、Place ツールが有効になっている。](assets/place-on-map.jpg)
 
-マップエディタは相互作用を書きません。置いた拾得物は、その配置に `item.add id=<アイテム> count=1` のアクションがあるときだけアイテムを渡します。この行は配置のファイルに手で書いてください。
+マップエディタは操作を自動追加しません。配置を選び、**操作 → 動作 → アイテムを渡す**で品と数量を選んで保存します。イベントのコマンドに `action item.add id=<item> count=1` と書くこともできます。一度限りの取得には保存フラグと状態または条件が必要です。渡す設定だけでは毎回報酬を得られます。
 
 ## うまくいかないとき
 

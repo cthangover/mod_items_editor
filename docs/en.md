@@ -14,6 +14,8 @@ In the editor: choose the mod `rpg_plus_game` at the top, pick **Elixir** in the
 
 ![The Items window on rpg_plus_game: the list Brushwood, Stones, Forest mushroom and Dawn elixir; the form of rpg_demo/elixir with the name key rpg_demo/item/elixir/name, text (en) Dawn elixir and the other six languages unchanged, the description in seven languages, Price 10, Icon rpg_demo/healing_elixir with its picture, Types TargetUsed, Action action/heal. The status line: "Saved: 0 file(s), 1 text(s) in mod rpg_plus_game; the game re-read its data".](assets/editor-saved.jpg)
 
+The editor illustration is from an earlier capture. Legacy `rpg_demo/` keys or an `rpg_tileset` palette visible in it are historical; use the current `rpg_plus/` keys and `rpg_object` model described in the text.
+
 Only the English line of the mod's `locale/en.properties` changed; the item file was not touched. The same elixir in the bag right after:
 
 ![The inventory now shows the item as Dawn elixir, still Targeted, price 10.](assets/bag-after.jpg)
@@ -53,7 +55,7 @@ Each field shows where its value comes from. A badge tells you when the value is
 
 ![The RPG Map Editor opened by Place on map on rpg_plus_game's first map, rpg_desert: the Sprites tab has the amber pickup chosen and the Place tool is active.](assets/place-on-map.jpg)
 
-The map editor writes no interaction. A placed pickup gives its item only when the placement also has the action `item.add id=<item> count=1`, and that line has to be written by hand in the placement's file.
+The map editor does not automatically give the pickup an interaction. Select the placement and choose **Interaction → Does → Gives an item**, then choose the item and count and save. Inline event commands can also run `action item.add id=<item> count=1`. For a one-time pickup, add a saved flag and a state or event condition; the Give item picker alone repeats on every use.
 
 ## If something goes wrong
 

@@ -14,6 +14,8 @@ En el editor: elige el mod `rpg_plus_game` arriba, selecciona **Elixir** en la l
 
 ![La ventana Objetos sobre rpg_plus_game: la lista Leña, Piedras, Seta del bosque y Dawn elixir; el formulario de rpg_demo/elixir con la clave del nombre rpg_demo/item/elixir/name, texto (en) Dawn elixir y los otros seis idiomas sin cambios, la descripción en siete idiomas, Price 10, Icon rpg_demo/healing_elixir con su imagen, Types TargetUsed, Action action/heal. La línea de estado: «Guardado: 0 archivo(s), 1 texto(s) en el mod rpg_plus_game; el juego releyó sus datos».](assets/editor-saved.jpg)
 
+La imagen del editor es de una captura anterior: las claves `rpg_demo/` o la paleta `rpg_tileset` que aparecen son históricas. Usa las claves actuales `rpg_plus/` y el modelo `rpg_object` descritos en el texto.
+
 Solo cambió la línea en inglés del `locale/en.properties` del mod; el archivo del objeto no se tocó. El mismo elixir en el inventario justo después:
 
 ![El inventario muestra ahora el objeto como Dawn elixir, sigue Targeted, precio 10.](assets/bag-after.jpg)
@@ -43,7 +45,7 @@ Cada campo muestra de dónde viene su valor: una insignia indica si el valor es 
 
 ![El Editor de mapas RPG abierto con Place on map en el primer mapa de rpg_plus_game (rpg_desert): la pestaña Sprites tiene elegida la recogida amber y la herramienta Place activa.](assets/place-on-map.jpg)
 
-El editor de mapas no escribe ninguna interacción. Una recogida colocada solo entrega su objeto si la colocación tiene la acción `item.add id=<objeto> count=1`; esa línea debe escribirse a mano en el archivo de la colocación.
+El editor de mapas no añade la interacción automáticamente. Selecciona la colocación, **Interacción → Hace → Entrega un objeto**, elige objeto y cantidad y guarda. También puedes usar `action item.add id=<item> count=1` en órdenes del evento. Para una recogida única añade un flag guardado y un estado o condición; el selector de entrega por sí solo repite la recompensa.
 
 ## Si algo sale mal
 

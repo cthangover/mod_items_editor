@@ -14,6 +14,8 @@ RPG Plus 的背包里有村里商店卖的药水：
 
 ![rpg_plus_game 上的「物品」窗口：列表中有 柴火、石头、森林蘑菇 和 Dawn elixir；rpg_demo/elixir 的表单，名称键为 rpg_demo/item/elixir/name，文本 (en) Dawn elixir，其余六种语言未变，描述有七种语言，价格 10，图标 rpg_demo/healing_elixir 及其图片，类型 TargetUsed，动作 action/heal。状态行：「已保存：模组 rpg_plus_game 中 0 个文件、1 条文本；游戏已重新读取数据」。](assets/editor-saved.jpg)
 
+编辑器插图来自较早的截图，其中的 `rpg_demo/` 键或 `rpg_tileset` 面板属于旧版。请使用正文中的当前 `rpg_plus/` 键与 `rpg_object` 模型。
+
 只有模组 `locale/en.properties` 的英文一行变了；物品文件没有动。紧接着背包里的同一瓶药水：
 
 ![背包现在把该物品显示为 Dawn elixir，仍是 Targeted，价格 10。](assets/bag-after.jpg)
@@ -43,7 +45,7 @@ RPG Plus 的背包里有村里商店卖的药水：
 
 ![在 rpg_plus_game 的第一张地图 rpg_desert 上由 Place on map 打开的 RPG 地图编辑器：Sprites 标签中选中了 amber 拾取物，Place 工具已启用。](assets/place-on-map.jpg)
 
-地图编辑器不写入交互。放置的拾取物只有在该放置对象带有动作 `item.add id=<物品> count=1` 时才会给出物品；这一行需要手动写入放置对象的文件。
+地图编辑器不会自动添加交互。选择实例，进入**交互 → 行为 → 给予物品**，选择物品和数量并保存。事件内联命令也可用 `action item.add id=<item> count=1`。一次性拾取需要保存标志及状态或事件条件；仅选择给予物品会在每次使用时重复奖励。
 
 ## 出问题了怎么办
 
