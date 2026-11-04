@@ -14,6 +14,8 @@ RPG Plus의 인벤토리에는 마을 상점의 엘릭서가 있습니다:
 
 ![rpg_plus_game의 "아이템" 창: 목록에는 땔감, 돌, 숲 버섯, Dawn elixir. rpg_demo/elixir의 양식, 이름 키 rpg_demo/item/elixir/name, 텍스트 (en) Dawn elixir, 나머지 여섯 언어는 그대로, 일곱 언어의 설명, 가격 10, 아이콘 rpg_demo/healing_elixir와 그 그림, 유형 TargetUsed, 동작 action/heal. 상태 줄: "저장함: 모드 rpg_plus_game의 파일 0개, 텍스트 1개. 게임이 데이터를 다시 읽었습니다".](assets/editor-saved.jpg)
 
+편집기 그림은 이전 캡처입니다. 보이는 `rpg_demo/` 키나 `rpg_tileset` 팔레트는 구버전이며 본문의 현재 `rpg_plus/` 키와 `rpg_object` 모델을 사용하세요.
+
 바뀐 것은 모드 `locale/en.properties`의 영어 한 줄뿐입니다. 아이템 파일은 그대로입니다. 바로 뒤의 인벤토리 속 같은 엘릭서:
 
 ![인벤토리는 이제 이 아이템을 Dawn elixir로 보여 줍니다. 여전히 Targeted, 가격 10.](assets/bag-after.jpg)
@@ -43,7 +45,7 @@ RPG Plus의 인벤토리에는 마을 상점의 엘릭서가 있습니다:
 
 ![rpg_plus_game의 첫 번째 맵 rpg_desert에서 Place on map으로 연 RPG 맵 편집기. Sprites 탭에서 amber 줍기 오브젝트가 선택되어 있고 Place 도구가 켜져 있습니다.](assets/place-on-map.jpg)
 
-맵 편집기는 상호작용을 기록하지 않습니다. 놓인 줍기 아이템은 그 배치에 `item.add id=<아이템> count=1` 동작이 있을 때만 아이템을 줍니다. 이 줄은 배치 파일에 직접 써야 합니다.
+맵 편집기는 상호작용을 자동 추가하지 않습니다. 배치를 고르고 **상호작용 → 동작 → 아이템 지급**에서 아이템과 수량을 정한 뒤 저장하세요. 이벤트 명령에 `action item.add id=<item> count=1`을 써도 됩니다. 한 번만 줍게 하려면 저장 플래그와 상태 또는 조건을 넣어야 합니다. 지급 선택만 하면 매번 보상을 줍니다.
 
 ## 문제가 생겼을 때
 
