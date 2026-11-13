@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "author": "ct",
   "description": "Edits a mod's items while the game runs: names and descriptions in every language, price, picture, types and the use action. The game shows a save at once.",
-  "category": "tools, editor",
+  "categories": ["tools", "editor"],
   "sources": [
     "src/**/*.cs"
   ],
