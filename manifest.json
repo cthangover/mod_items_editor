@@ -1,7 +1,7 @@
 {
   "id": "items_editor",
   "name": "Items Editor",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "author": "ct",
   "description": "Edits a mod's items while the game runs: names and descriptions in every language, price, picture, types and the use action. The game shows a save at once.",
   "category": "tools, editor",
@@ -9,9 +9,9 @@
     "src/**/*.cs"
   ],
   "depends": [
-    "tools_base>=1",
-    "items_base>=1",
-    "ui_base>=1"
+    "tools_base>=0.1.0",
+    "items_base>=0.1.0",
+    "ui_base>=0.1.0"
   ],
   "test_suites": [
     {
