@@ -53,6 +53,9 @@ Each field shows where its value comes from. A badge tells you when the value is
 
 **Place on map** opens the RPG Map Editor on the first map file of the item's mod, with a pickup object already chosen for placing. The pickup is the object of category `pickup` whose id ends with the item's name: for the item `rpg_plus/amber` it is `rpg_plus/pickup/amber`. If the item has no pickup object yet, the editor writes one into the item's mod (`objects/pickup_<name>.json`, id `<mod>/pickup/<name>`) with the item's picture, and chooses it at once. The item needs a picture and a name made of lowercase letters, digits and underscores; the status line says so otherwise. The map is fitted to the window, so the whole map is in view. Click a cell to place the pickup, then set its Interact in the map editor to give the item.
 
+
+A new pickup copies its item picture into `rpg_images/<mod>/pickup/<name>.<extension>` of the same mod. The copy preserves the original bytes; the inventory picture stays unchanged. The object references this separate map picture, so it renders and validates in both projections. An existing different file is not overwritten: the editor reports a conflict. If writing the object does not complete, the newly created copy is removed.
+
 ![The RPG Map Editor opened by Place on map on rpg_plus_game's first map, rpg_desert: the Sprites tab has the amber pickup chosen and the Place tool is active.](assets/place-on-map.jpg)
 
 The map editor does not automatically give the pickup an interaction. Select the placement and choose **Interaction → Does → Gives an item**, then choose the item and count and save. Inline event commands can also run `action item.add id=<item> count=1`. For a one-time pickup, add a saved flag and a state or event condition; the Give item picker alone repeats on every use.

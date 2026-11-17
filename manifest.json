@@ -4,7 +4,10 @@
   "version": "0.1.0",
   "author": "ct",
   "description": "Edits a mod's items while the game runs: names and descriptions in every language, price, picture, types and the use action. The game shows a save at once.",
-  "categories": ["tools", "editor"],
+  "categories": [
+    "tools",
+    "editor"
+  ],
   "sources": [
     "src/**/*.cs"
   ],
@@ -24,6 +27,12 @@
       "id": "foreign_patch",
       "activate": [
         "--itest=editor_foreign_patch"
+      ]
+    },
+    {
+      "id": "pickup",
+      "activate": [
+        "--itest=items_pickup"
       ]
     }
   ]

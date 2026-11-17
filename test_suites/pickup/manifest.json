@@ -1,0 +1,10 @@
+{
+  "name": "Pickup picture authoring contracts",
+  "test_sources": [
+    "tests/*.cs"
+  ],
+  "depends": [
+    "rpg_plus_game>=0.1.0",
+    "rpg_editor>=0.1.0"
+  ]
+}
