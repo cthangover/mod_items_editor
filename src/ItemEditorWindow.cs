@@ -89,6 +89,42 @@ namespace Cthangover.Tools.ItemsEditor
                     TooltipKey = "tools/items_editor/action_tip",
                     Kind = EntityFieldKind.Choice,
                     Options = Actions
+                },
+                new EntityField
+                {
+                    Key = "Inventory.Width",
+                    LabelKey = "tools/items_editor/storage_width",
+                    Kind = EntityFieldKind.Integer
+                },
+                new EntityField
+                {
+                    Key = "Inventory.Height",
+                    LabelKey = "tools/items_editor/storage_height",
+                    Kind = EntityFieldKind.Integer
+                },
+                new EntityField
+                {
+                    Key = "Inventory.GroupWidth",
+                    LabelKey = "tools/items_editor/storage_group_width",
+                    Kind = EntityFieldKind.Integer
+                },
+                new EntityField
+                {
+                    Key = "Inventory.GroupHeight",
+                    LabelKey = "tools/items_editor/storage_group_height",
+                    Kind = EntityFieldKind.Integer
+                },
+                new EntityField
+                {
+                    Key = "Inventory.StackLimit",
+                    LabelKey = "tools/items_editor/storage_limit",
+                    Kind = EntityFieldKind.Integer
+                },
+                new EntityField
+                {
+                    Key = "Inventory.Rotation",
+                    LabelKey = "tools/items_editor/storage_rotation",
+                    Kind = EntityFieldKind.Integer
                 }
             };
         }
@@ -143,7 +179,7 @@ namespace Cthangover.Tools.ItemsEditor
             block.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
             block.AddChild(ToolUi.Section("tools/items_editor/section_map"));
             placeButton = ToolUi.Button("tools/items_editor/place_on_map", PlaceOnMap, ButtonKind.Secondary,
-                 "tools/items_editor/place_on_map_tip");
+                "tools/items_editor/place_on_map_tip");
             block.AddChild(placeButton);
             return block;
         }
@@ -196,7 +232,7 @@ namespace Cthangover.Tools.ItemsEditor
             }
 
             SetStatus(string.Format(ToolUi.Tr(created ? "tools/items_editor/place_created" : "tools/items_editor/place_done"), pickup,
-                 SelectedId), ToolStatusKind.Info);
+                SelectedId), ToolStatusKind.Info);
         }
 
         /// <summary>
@@ -213,7 +249,7 @@ namespace Cthangover.Tools.ItemsEditor
                 return null;
             }
 
-            var sprite = Document?.Find(SelectedId)?.Data?["Sprite"] is JsonValue value && value.TryGetValue(out string picture) 
+            var sprite = Document?.Find(SelectedId)?.Data?["Sprite"] is JsonValue value && value.TryGetValue(out string picture)
                 ? picture : null;
             if (string.IsNullOrEmpty(sprite))
             {
@@ -264,9 +300,11 @@ namespace Cthangover.Tools.ItemsEditor
             {
                 ["Kind"] = "rpg_object",
                 ["Items"] = new JsonArray(entity)
-            }.ToJsonString(new System.Text.Json.JsonSerializerOptions { 
-                WriteIndented = true, 
-                TypeInfoResolver = new System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver(), 
+            }.ToJsonString(new System.Text.Json.JsonSerializerOptions
+            {
+                WriteIndented = true,
+                TypeInfoResolver = new System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver(),
+
             }) + "\n";
             if (!ModFileService.WriteText(mod, path, text))
             {

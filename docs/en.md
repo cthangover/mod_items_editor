@@ -65,3 +65,7 @@ The map editor does not automatically give the pickup an interaction. Select the
 1. **The mod list is empty.** No mod can be written to; packed mods cannot be edited.
 2. **The bag still shows the old name.** The item was saved in another language than the game's; check the line of the game's language.
 3. **The action list lacks an action.** The mod that registers it is not loaded in this game.
+
+## Storage dimensions
+
+The item form includes cell width/height, group width/height, group limit and rotation (0 or 1). Zero group dimensions inherit the item dimensions. Limit 1 prevents grouping. These fields write the Inventory extension and retain unrelated item data. Saved groups keep their saved footprint.
